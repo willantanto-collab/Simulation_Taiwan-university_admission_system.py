@@ -1,0 +1,2 @@
+# Simulation_Taiwan-university_admission_system.py
+ 为华侨生申请台湾的大学提供精准的加权计算与录取模拟

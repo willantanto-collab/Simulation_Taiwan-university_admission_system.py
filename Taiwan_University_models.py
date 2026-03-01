@@ -111,3 +111,35 @@ class GrowthAnalyser: #成绩上的潜力和改变
       maximum_points = total_points
 self.potential_multiplier = 1 + (limited_points / 100) * 0.6 
 return round(self.potential_multiplier,3) #确保计算严谨，精确     
+
+#def detect_advanced_features 是从computer science A level书本中的灵感，加上学生认为这样子可以更好的帮助代码的运转逻辑，于是这么写的
+class StudentProject: #分析学生提交的单一最优秀项目
+  def __init__(self,project_name,code_sample = ""):
+    self.project_name = project_name
+    self.code_sample = code_sample
+    self.metrics = {"pytest_scenarios":0,"exception_handlers":0,"advanced_logic_patterns":[],"engineering_score":0.0}
+  def analyse_robustness(self): #分析代码的稳健性
+    self.metrics["pytest_scenarios"] = self.code_sample.count("assert") #检查是否包含pytest的核心断言
+    self.metrics["exception_handlers"] = self.code_sample.count("try:") + self.code_sample.count("raise")
+    if self.metrics["exception_handlers"] > 0:
+      print(f”检测到{self.metrics['exception_handlers']} 的处理方案，判断已具备初步工程化”）
+  思维。”）
+  def detect_advanced_features(self): #识别到高级特性，避开了低级算法堆砌
+    lines = self.code_sample.split('\n'）
+    for line in lines: #Check for logic pattern for list comprehension.Logical pattern: Must contain [ , for , in , ] in a single line.
+        line = line.strip()
+        if "[" in line and " for " in line and " in " in line and "]" in line:
+          if "List Comprehension" not in self.metrics["advanced_logic_patterns"]:
+            self.metrics["advanced_logic_patterns"].append("List Comprehension"）
+        if "class " in self.code_sample and "(" in self.code_sample and ")" in self.code_sample: #check for inheritance,vertify class definition inherits from a base class()
+          self.metrics["advanced_logic_patterns"].append("Class Inheritance")
+        for line in lines: #Look for @ at the start of a line,Decorators.
+          if line.strip().startswith("@"):
+            self.metrics["advanced_logic_patterns"].append("Decorators")
+            break
+        for line in lines: #Check for Type Hinting,search for -> operator in function definitions
+          if "def " in line and "->" in line and ":" in line:
+            self.metrics["advanced_logic_patterns"].append("Type Hinting")
+            break
+        if "with open" in self.code_sample or "with " in self.code_sample: # Check for context managers,check for 'with' to ensure safe file.
+          self.metrics["advanced_logic_patterns"].append("Context Managers")

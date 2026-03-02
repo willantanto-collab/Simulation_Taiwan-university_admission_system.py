@@ -1,6 +1,8 @@
 #project : Taiwan University Overseas Admission Analysis Engine
 #Purpose : 为华侨生申请台湾的大学提供精准的加权计算与录取模拟
 #name: Harry
+#还有就是，我写中文注释时担心兼容性，所以专门去查了 Python 编码规范，添加了下面这一行，这个coding and utf8
+# -*- coding: utf-8 -*-
 class IdentityValidator:
     def __init__(self, name, total_days, yearly_logs):
         self.name = name

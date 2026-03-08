@@ -29,6 +29,21 @@ class SecurityVertifier:
             print(f"Change of data detected in {node.name}")
             return False #any child tamper triggers in root invalidation
         return True
+class SearchManager:
+    def __init__(self, data_list):
+        self.__data = data_list  
+        self.comparisons = 0     
+        self._cache = {}  # 缓存，避免重复的行为计算
+    def linear_search(self, target):
+        if target in self._cache:  # 增加缓存检查，如果找过就直接给结果
+            return self._cache[target]
+        for index, value in enumerate(self.__data): # 使用 enumerate 替代 range(len())，更简洁高效，他是用来循环时自动一边点名，一边报数，不用自己动手写代码去数现在是第几个的一种流程。
+            self.comparisons += 1
+            if value == target:
+                self._cache[target] = index #存入缓存
+                return index  
+        self._cache[target] = -1
+        return -1
 #Scapy,初次尝试防守黑客攻击者的代码
 #自学来的，自学链接用的这个 https://www.youtube.com/watch?v=f4Pr2X98UfE 和其他搜索来源
 #https://www.youtube.com/watch?v=f4Pr2X98UfE 这个链接主要讲的是黑客用scapy 的基础攻击手段。
